@@ -27,7 +27,7 @@ library(bslib)
 library(fontawesome)
 library(tibble)
 library(fresh)
-
+library(sf)
 
 # ids
 load('dados/id_rd.Rdata')
@@ -38,3 +38,11 @@ adm1 <- readRDS("dados/shp_adm1_2025_simpl.rds")
 # layer 2
 adm2 <- readRDS("dados/shp_adm2_2025_simpl.rds")
 
+load('dados/rd_indicadores_v1.Rdata')
+indicadores <- indicadores |> 
+  select(-provincia) |> 
+  left_join(id, by = c('iso' = 'iso'))
+
+# teste
+adm2 <- adm2 |> 
+  left_join(indicadores, by='adm2_pcode')

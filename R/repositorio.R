@@ -1,16 +1,20 @@
-# ===================== MÓDULO: REPOSITÓRIO DE POWERPOINTS =====================
+# ===================== MÓDULO: REPOSITORIO DE POWERPOINTS =====================
 
 repositorio_ui <- function(id) {
   ns <- NS(id)
   
-  # Metadados dos arquivos (pode editar textos depois)
+  # Metadatos de los archivos
   arquivos <- data.frame(
-    id        = c("norte", "sul", "sudeste"),
-    nome      = c("Norte", "Sul", "Sudeste"),
+    id        = c("caso_negocio", "envejecer_genero", "impacto_economia"),
+    nome      = c(
+      "Caso de negocio",
+      "Envejecer es una cuestión de género",
+      "Impactos del envejecimiento en la economía"
+    ),
     descricao = c(
-      "Indicadores y oportunidades para la región Norte.",
-      "Indicadores y oportunidades para la región Sul.",
-      "Indicadores y oportunidades para la región Sudeste."
+      "Presentación sobre el caso de negocio del envejecimiento poblacional.",
+      "Análisis de cómo envejecer es también una cuestión de género.",
+      "Impactos del envejecimiento en la economía y en los mercados."
     ),
     stringsAsFactors = FALSE
   )
@@ -31,13 +35,10 @@ repositorio_ui <- function(id) {
         ),
         div(
           class = "ppt-card-body",
-          tags$p(class = "ppt-meta", ".pptx · clique para baixar o arquivo e abrir no PowerPoint.")
-          # Se no futuro você tiver uma versão PDF,
-          # pode colocar aqui um iframe, por exemplo:
-          # tags$iframe(
-          #   src = paste0("powerpoints/", arquivos$pdf[i]),
-          #   style = "width:100%;height:220px;border:none;border-radius:10px;"
-          # )
+          tags$p(
+            class = "ppt-meta",
+            ".pptx · haz clic en \"Descargar PPTX\" para guardar el archivo y abrirlo en PowerPoint."
+          )
         ),
         div(
           class = "ppt-card-footer",
@@ -142,7 +143,7 @@ repositorio_ui <- function(id) {
         div(
           class = "ppt-hero",
           h2("Repositorio de presentaciones"),
-          p("Aquí encontrarás los PowerPoints por región. Haz clic en \"Descargar PPTX\" para abrir la presentación en tu computadora..")
+          p("Aquí encontrarás las presentaciones en PowerPoint. Haz clic en \"Descargar PPTX\" para abrir la presentación en tu computadora.")
         )
       )
     ),
@@ -157,8 +158,12 @@ repositorio_server <- function(id) {
     ns <- session$ns
     
     arquivos <- data.frame(
-      id      = c("norte", "sul", "sudeste"),
-      arquivo = c("Norte.pptx", "Sul.pptx", "Sudeste.pptx"),
+      id      = c("caso_negocio", "envejecer_genero", "impacto_economia"),
+      arquivo = c(
+        "caso_negocio.pptx",
+        "envejecer_genero.pptx",
+        "impacto_envejecimento_economia.pptx"
+      ),
       stringsAsFactors = FALSE
     )
     
